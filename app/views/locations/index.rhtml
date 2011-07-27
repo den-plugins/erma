@@ -1,0 +1,28 @@
+<%= render :partial => '/admin/menu' %>
+
+<div class="contextual">
+    <%= link_to(l(:label_erma_new_links, :tab => 'location'), {:controller => 'locations', :action => 'add'}, :class => 'icon icon-add') if User.current.admin? %>
+</div>
+
+<div>
+  <h2><%= l(:label_erma_tab, :tab => 'Locations') %></h2>
+
+  <div>
+    <table class="list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th></th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for location in @locations %>
+          <%= render :partial => 'details', :locals => { :location => location } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% html_title(l(:label_erma_html_title, :tab => 'Locations'))-%>

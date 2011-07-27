@@ -1,0 +1,18 @@
+<%= error_messages_for 'sow' %>
+
+<div class="box">
+<!--[form:sow]-->
+<p><%= f.select :client_id, Client.find(:all).collect { |c| [ c.name, c.id ] }, { :include_blank => true } %></p>
+<p><%= f.select :project_id, projects.collect { |p| [ p.name, p.id ] }, { :include_blank => true } %></p>
+<p><%= f.select :statement_of_work_status_id, StatementOfWorkStatus.find(:all).collect { |s| [ s.name, s.id ] }, { :include_blank => true } %>
+  <%= prompt_to_remote(l(:label_erma_new_status),
+                       l(:label_erma_new_status), 'status[name]',
+                       {:controller => 'statement_of_work_statuses', :action => 'add'},
+                       :class => 'small', :tabindex => 199) %></p>
+<p><%= f.text_field :start_date, :size => 10 %><%= calendar_for('sow_start_date') %></p>
+<p><%= f.text_field :end_date, :size => 10 %><%= calendar_for('sow_end_date') %></p>
+<p><%= f.check_box  :hourly_billing, {} %></p>
+
+</div>
+<!--[eoform:sow]-->
+

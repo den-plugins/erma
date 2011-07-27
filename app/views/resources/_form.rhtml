@@ -1,0 +1,13 @@
+<%= error_messages_for 'resource' %>
+
+<div class="box">
+<!--[form:resource]-->
+<p><%= f.select :vendor_id, Vendor.find(:all).collect { |v| [ v.name, v.id ] } %></p>
+<p><%= f.select :location_id, Location.find(:all).collect { |l| [ l.name, l.id ] } %>
+  <%= prompt_to_remote(l(:label_new_location),
+                       l(:label_new_location), 'location[name]', 
+                       {:controller => 'locations', :action => 'add'},
+                       :class => 'small', :tabindex => 199) %></p>
+<p><%= f.text_field :level, :size => 2 %></p>
+</div>
+<!--[eoform:resource]-->

@@ -1,0 +1,20 @@
+<tr class="practice <%= cycle("odd", "even") %>">
+  <td align="center"><%= link_to practice.name, :controller => 'practices', :action => 'show', :id => practice.id %></td>
+  <td align="center" id="practice_<%= practice.id %>">
+    <%= practice.resource_practices.length %>
+  </td>
+  <td>
+    <% remote_form_for(:resource, :url => {:controller => 'practices', :action => 'add_resource', :id => practice}, :method => :post) do |f| %>
+    <%= f.select :id, sort_resources(Resource.not_in_practice(practice)).collect{|resource| [resource.user, resource.id]}, {:include_blank => true}, :class => "small" %>
+    <%= submit_tag l(:button_add), :class => "small" %>
+    <% end %>
+  </td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'practices', :action => 'edit', :id => practice.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'practices', :action => 'destroy', :id => practice.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

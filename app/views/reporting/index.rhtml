@@ -1,0 +1,55 @@
+<%#= render :partial => '/admin/menu' %>
+
+<!-- h2><%#= l('Reports') %></h2>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table -->
+
+<%# html_title(l('ERMA Reports'))-%>
+
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_tab, :tab => 'Engaged Projects')) %></h2>
+
+<table class="list">
+  <thead>
+    <tr>
+      <th>Client/Project</th>
+      <th>Team</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td colspan="2"><strong>Active Projects</strong></td>
+    </tr>
+    <% if @active_sows.empty? %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td colspan="2" align="center"><em>No Active Projects</em></td>
+      </tr>
+    <% else %>
+      <% for active_sow in @active_sows %>
+        <%= render :partial => 'project_details', :locals => { :sow => active_sow } %>
+      <% end %>
+    <% end %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td colspan="2"><strong>Planned Projects</strong></td>
+    </tr>
+    <% if @planned_sows.empty? %>
+      <tr class="<%= cycle("odd", "even") %>">
+        <td colspan="2" align="center"><em>No Planned Projects</em></td>
+      </tr>
+    <% else %>
+      <% for planned_sow in @planned_sows %>
+        <%= render :partial => 'project_details', :locals => { :sow => planned_sow } %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+

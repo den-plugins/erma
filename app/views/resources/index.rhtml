@@ -1,0 +1,16 @@
+<%= render :partial => '/admin/menu' %>
+
+<div class="contextual">
+    <%= link_to(l(:label_erma_new_links, :tab => 'resource'), {:controller => 'users', :action => 'add'}, :class => 'icon icon-add') if User.current.admin? %>
+</div>
+
+<h2><%= l(:label_erma_tab, :tab => 'Resources') %></h2>
+<% if @resources.empty? %>
+<% html_title(l(:label_erma_html_title, :tab => 'Resources'))-%>
+<p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+<%= render :partial => 'resources/list', :locals => {:resources => @resources} %>
+<p class="pagination"><%= pagination_links_full @resource_pages, @resource_count %></p>
+<% end %>
+
+

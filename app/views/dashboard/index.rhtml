@@ -1,0 +1,45 @@
+<%=  render :partial => 'admin/menu' %>
+
+<% form_remote_tag(:url => {}, :update => 'tab-content') do %>
+
+  <h2><%=l(:label_erma_tab, :tab => 'Dashboard')%></h2>
+  
+  <%= render :partial => 'dashboard/date_range' %>
+  <div>
+    <%= l(:label_details) %>: <%= select_tag 'columns', options_for_select([[l(:label_month), 'month'],[l(:label_day_plural).titleize, 'day']], @columns),
+                 :onchange => "this.form.submit();" %>
+  </div>
+<% end %>
+
+<div style="overflow-x: auto;">
+<% if @periods.length > 0 %>
+    <table class="list">
+      <thead>
+        <% columns_width = (40 / (@periods.length+1)).to_i %>
+        <th width="10%">Practices</th>
+        <% for period in @periods %>
+          <th class="period" width="<%= columns_width %>'%'"><%= period -%></th>
+        <% end %>
+      </thead>
+      <tbody>
+        <% for practice in @practices %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td><%= practice %></td>
+            <% for period in @periods %>
+              <td  style="text-align: center; font-weight: bold; padding-right: 0.5em;">
+			  <% resources = unallocated_resources(practice, period, @columns) %>
+			    <% if unallocated_resources(practice, period, @columns).length !=0 %>
+			      <%=link_to resources.length, {:controller => 'reporting', :action => 'benched_resources', :practice => practice.id, :columns => @columns, :period => period }%>
+				<% else %>
+				   0
+				<% end %>     
+			  </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+</div>
+
+<% html_title(l(:label_erma_html_title, :tab => 'Dashboard'))-%>

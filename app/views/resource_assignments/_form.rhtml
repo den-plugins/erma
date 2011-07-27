@@ -1,0 +1,18 @@
+<%= error_messages_for 'resource_assignment' %>
+
+<div class="box">
+<!--[form:resourceassignment]-->
+<p><%= f.select :statement_of_work_id, StatementOfWork.find(:all).collect { |s| [ s.project.name, s.id ] }, { :include_blank => true, :required => true } %></p>
+<p><%= f.select :resource_id, sort_resources(@resources).collect { |r| [ r.user, r.id ] }, { :include_blank => true, :required => true } %></p>
+<p><%= f.select :role, Role.find(:all).collect { |r| [ r.name ] } %><br /></p>
+<p><%= f.text_field :start_date, :size => 10, :required => true %><%= calendar_for('resource_assignment_start_date') %></p>
+<p><%= f.text_field :end_date, :size => 10 %><%= calendar_for('resource_assignment_end_date') %></p>
+<p><%= f.text_field :percentage_allocation, :size => 10, :required => true %></p>
+<p><%= f.text_field :billing_rate, :size => 10 %></p>
+<p><%= f.check_box :on_demand, {} %></p>
+<p><%= f.check_box :locked, {} %></p>
+<p><%= f.check_box :is_shadow, {} %></p>
+
+</div>
+<!--[eoform:resourceassignment]-->
+

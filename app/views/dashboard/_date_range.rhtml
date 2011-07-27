@@ -1,0 +1,30 @@
+<fieldset id="filters"><legend><%= l(:label_date_range) %></legend>
+<p>
+
+<%= radio_button_tag 'period_type', '1', !@free_period %>
+<%= select_tag 'period', options_for_select([[l(:label_this_month), 'current_month'],
+                        [l(:label_all_time), 'all'],
+                        [l(:label_today), 'today'],
+                        [l(:label_yesterday), 'yesterday'],
+                        [l(:label_this_week), 'current_week'],
+                        [l(:label_last_week), 'last_week'],
+                        [l(:label_last_n_days, 7), '7_days'],
+                        [l(:label_last_month), 'last_month'],
+                        [l(:label_last_n_days, 30), '30_days'],
+                        [l(:label_this_year), 'current_year']],
+                        params[:period]),
+                         :onchange => 'this.form.submit();',
+                         :onfocus => '$("period_type_1").checked = true;' %>
+</p>
+<p>
+<%= radio_button_tag 'period_type', '2', @free_period %>
+<span onclick="$('period_type_2').checked = true;">
+<%= l(:label_date_from) %>
+<%= text_field_tag 'from', @from, :size => 10 %> <%= calendar_for('from') %>
+<%= l(:label_date_to) %>
+<%= text_field_tag 'to', @to, :size => 10 %> <%= calendar_for('to') %>
+</span>
+<%= submit_tag l(:button_apply), :name => nil, :onclick => 'this.form.submit();' %>
+</p>
+</fieldset>
+

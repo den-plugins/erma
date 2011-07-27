@@ -1,0 +1,12 @@
+<%= error_messages_for 'client' %>
+
+<div class="box">
+<!--[form:client]-->
+<p><%= f.text_field :name, :required => true %><br /><em><%= l(:text_caracters_maximum, 30) %></em></p>
+<p><%= f.text_area  :description, :rows => 5, :class => 'wiki-edit' %></p>
+<p><%= f.check_box  :active, {}%></p>
+<%= wikitoolbar_for 'client_description' %>
+
+</div>
+<!--[eoform:client]-->
+

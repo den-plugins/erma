@@ -1,0 +1,32 @@
+<%= render :partial => '/admin/menu' %>
+
+<div class="contextual">
+    <%= link_to(l('New Resource Assignment'), {:controller => 'resource_assignments', :action => 'add'}, :class => 'icon icon-add') if User.current.admin? %>
+</div>
+
+<h2><%= l('Resource Assignments') %></h2>
+
+<div>
+  <table class="list">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Project</th>
+        <th>Role</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Percentage Allocation</th>
+        <th>Billing Rate</th>
+        <th>On Demand</th>
+        <th>Locked</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for resource_assignment in @resource_assignments %>
+        <%= render :partial => 'details', :locals => { :resource_assignment => resource_assignment } %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<%  html_title(l('ERMA Resource Assignments')) %>

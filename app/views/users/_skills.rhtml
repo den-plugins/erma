@@ -1,0 +1,25 @@
+<% labelled_tabular_form_for :user, @user, :url => { :action => "edit" } do |f| %>
+
+
+<%= error_messages_for 'skill' %>
+
+<!--[form:skill]-->
+<div class="box">
+<h3><%=l('Skills')%></h3>
+<p>
+  <%# remote_form_for(:skill, skill, :url => {:controller => 'resources', :action => 'add', :id => skill}, :method => :post) do |f| %>
+    <%#= f.select :skill_id, skills.collect{|skill| [skill.name, skill.id]}, {}, :class => "small" %>
+    <%#= submit_tag l(:button_change), :class => "small" %>
+  <%# end %>
+<select id="skill_select" name="user" onchange="this.form.onsubmit();">
+<option selected="selected" disabled="disabled"><%= l("Select a skill") %></option>
+<option disabled="disabled">-------------------------</option>
+<% @skills.each do |skill| %>
+      <%= content_tag('option', h(skill.name), :value => skill.id) %>
+<% end %>
+</select>
+<%= submit_tag l(:button_add) %>
+</p>
+</div>
+<!--[eoform:skill]-->
+<% end %>

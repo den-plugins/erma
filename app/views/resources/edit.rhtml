@@ -1,0 +1,11 @@
+<div id='list_content' >
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_update, :tab => 'Resource'))%></h2>
+
+<% labelled_tabular_form_for :resource, @resource, :url => { :action => "update", :id => @resource.id } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_save) %> | <%= link_to 'Cancel', :back %>
+<% end %>
+</div>

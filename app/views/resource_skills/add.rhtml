@@ -1,0 +1,9 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%=html_title(l('Add Resource to ' + @resource_skill.skill.to_s))%></h2>
+
+<% labelled_tabular_form_for :resource_skill, @resource_skill, :url => { :action => "add" } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_add) %> | <%= link_to 'Cancel', :controller => 'skills', :action => 'show', :id => @resource_skill.skill.id %>
+<% end %>

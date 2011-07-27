@@ -1,0 +1,3 @@
+class TargetAllocationsController < ApplicationController
+  
+end

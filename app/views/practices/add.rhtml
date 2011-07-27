@@ -1,0 +1,12 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_add, :tab => 'Practice')) %></h2>
+<% labelled_tabular_form_for :practice, @practice, :url => { :action => "add" } do |f| %>
+
+<%= error_messages_for 'practice' %>
+
+<div class="box">
+  <p><%= f.text_field :name, :required => true %><br /><em><%= l(:text_caracters_maximum, 30) %></em></p>
+</div>
+  <%= submit_tag l(:button_add) %> | <%= link_to 'Cancel', :controller => "practices" %>
+<% end %>

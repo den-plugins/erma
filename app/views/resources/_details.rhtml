@@ -1,0 +1,20 @@
+<tr class="resources <%= cycle("odd", "even") %>">
+  <td align="center">
+    <%# if resource.active? %>
+      <%= link_to_user resource.user%>
+    <%# else %>
+      <%#= resource.name %>
+    <%# end %>                 
+  </td>
+  <td align="center"><%= resource.skills.each{|skill| skill.name}.join(', ') %></td>
+  <td align="center"><%= resource.user.projects.each{|project| project.name}.join(', ') if !resource.user.nil? %></td>
+	<td align="center"><%= image_tag('true.png') if resource.overloaded? %></td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'resources', :action => 'edit', :resource => resource.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'resources', :action => 'destroy', :resource => resource.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

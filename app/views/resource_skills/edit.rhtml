@@ -1,0 +1,11 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%=l('Update Resource Skill')%></h2>
+
+<% labelled_tabular_form_for :resource_skill, @resource_skill, :url => { :action => "update", :id => @resource_skill.id } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_save) %> | <%= link_to 'Cancel', :back %>
+<% end %>
+
+<% html_title(l('Update Resource Practice')) -%>

@@ -1,0 +1,42 @@
+<%= render :partial => '/admin/menu' %>
+
+<div>
+  <table>
+    <tr>
+      <td><h2><%= html_title(@practice.name) %></h2></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td valign="top">Resources:</td>
+      <td valign="top">
+        <% if @resource_practices.empty? %>
+          <em>No Resources</em>
+        <% else %>
+          <table>
+            <% for resource_practice in @resource_practices %>
+              <tr>
+                <td><%= resource_practice.resource.user.name %></td>
+                <td>
+                  <%= link_to image_tag('edit.png'), {:controller => 'resource_practices', :action => 'edit', :id => resource_practice.id,
+                                                     :title => l(:button_edit)} %>
+                  <%= link_to image_tag('delete.png'), {:controller => 'resource_practices', :action => 'destroy', :id => resource_practice.id},
+                                           :confirm => l(:text_are_you_sure),
+                                           :method => :post,
+                                           :title => l(:button_delete) %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= link_to 'Add resource', :controller => 'resource_practices', :action => 'add', :practice => @practice.id %></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,31 @@
+<tr class="<%= cycle("odd", "even") %>">
+  <td><% if sow %><%= sow.client.name %> / <%= sow.project.name %><% end %></td>
+  <td>
+    <% if sow.resource_assignments.empty? %>
+      No Team Members Assigned
+    <% else %>
+      <table class="list">
+        <thead>
+          <th style="width:100px;">Role</th>
+          <th style="width:250px;">Name</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Percentage Allocation</th>
+          <th>Is a Shadow</th>
+        </thead>
+        <tbody>
+          <% for resource_assignment in sow.resource_assignments %>
+            <tr class="<%= cycle("odd", "even") %>">
+              <td align="center"><%= resource_assignment.role %></td>
+              <td align="center"><%= resource_assignment.resource.user.name %></td>
+              <td align="center"><%= resource_assignment.start_date %></td>
+              <td align="center"><%= resource_assignment.end_date %></td>
+              <td align="center"><%= resource_assignment.percentage_allocation %></td>
+              <td align="center"><%= resource_assignment.is_shadow ? "yes" : "no" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </td>
+</tr>

@@ -1,0 +1,34 @@
+<%= render :partial => '/admin/menu' %>
+
+<div>
+  <table>
+    <tr>
+      <td>Skill Name: </td>
+      <td><%= @skill.name %></td>
+    </tr>
+    <tr>
+      <td valign="top">Resources:</td>
+      <td valign="top">
+        <% if @resource_skills.empty? %>
+          No Resources
+        <% else %>
+          <table>
+            <% for resource_skill in @resource_skills %>
+              <tr>
+                <td><%= resource_skill.resource.user.name %></td>
+                <td>
+                  <%= link_to image_tag('edit.png'), {:controller => 'resource_skills', :action => 'edit', :id => resource_skill.id,
+                                                     :title => l(:button_edit)} %>
+                  <%= link_to image_tag('delete.png'), {:controller => 'resource_skills', :action => 'destroy', :id => resource_skill.id},
+                                           :confirm => l(:text_are_you_sure),
+                                           :method => :post,
+                                           :title => l(:button_delete) %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>

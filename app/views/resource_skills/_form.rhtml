@@ -1,0 +1,10 @@
+<%= error_messages_for 'resource_skill' %>
+
+<div class="box">
+<!--[form:resourceskill]-->
+<p><label>Skill</label> <%= @resource_skill %></p>
+<%= f.hidden_field :skill_id %>
+<p><%= f.select :resource_id, sort_resources(@resources).collect { |r| [ r.user, r.id ] }, { :include_blank => true, :required => true } %></p>
+</div>
+<!--[eoform:resourceskill]-->
+

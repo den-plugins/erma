@@ -1,0 +1,10 @@
+<%= error_messages_for 'resource_practice' %>
+
+<div class="box">
+<!--[form:resourcepractice]-->
+<p><%= f.label :practice_id %><%= @resource_practice %></p>
+<%= f.hidden_field :practice_id %>
+<p><%= f.select :resource_id, sort_resources(@resources).collect { |r| [ r.user, r.id ] }, { :include_blank => true, :required => true } %></p>
+</div>
+<!--[eoform:resourcepractice]-->
+

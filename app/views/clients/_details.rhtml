@@ -1,0 +1,13 @@
+<tr class="user <%= cycle("odd", "even") %>">
+  <td align="center"><%= link_to client.name, :controller => 'clients', :action => 'show', :id => client.id %></td>
+  <td align="center"><%= textilizable client.description %></td>
+  <td align="center"><%= image_tag('true.png') if client.active? %></td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'clients', :action => 'edit', :id => client.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'clients', :action => 'destroy', :id => client.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

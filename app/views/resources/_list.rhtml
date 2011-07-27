@@ -1,0 +1,18 @@
+<table class="list">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Skills</th>
+      <th>Projects</th>
+			<th>Overloaded</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for resource in @resources %>
+       <%= render :partial => 'details', :locals => { :resource => resource} %>
+    <% end %>
+  </tbody>
+</table>
+
+

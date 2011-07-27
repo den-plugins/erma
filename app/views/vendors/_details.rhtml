@@ -1,0 +1,13 @@
+<tr class="vendors <%= cycle("odd", "even") %>">
+  <td align="center"><%= vendor.name %></td>
+  <td align="center"><%= textilizable vendor.description %></td>
+  <td align="center"><%= vendor.resources.count %></td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'vendors', :action => 'edit', :vendor => vendor.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'vendors', :action => 'destroy', :vendor => vendor.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

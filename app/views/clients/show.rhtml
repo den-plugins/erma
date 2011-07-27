@@ -1,0 +1,43 @@
+<%= render :partial => '/admin/menu' %>
+
+<div>
+  <table>
+    <tr>
+      <td>Name: </td>
+      <td><%= @client.name %></td>
+    </tr>
+    <tr>
+      <td>Description: </td>
+      <td><%= textilizable @client.description %></td>
+    </tr>
+    <tr>
+      <td>Active: </td>
+      <td><%= @client.active %></td>
+    </tr>
+    <tr>
+      <td>Statement of Works: </td>
+      <td>&nbsp;</td>
+    </tr>
+    <% if @client.statement_of_works.empty? %>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>No Statement of Work</em></td>
+      </tr>
+    <% else %>
+      <% for sow in @client.statement_of_works %>
+        <tr>
+          <td>&nbsp;</td>
+          <td><%= link_to sow.project.name, :controller => 'statement_of_works', :action => 'show', :id => sow.id %></td>
+        </tr>
+      <% end %>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= link_to 'New Statement of Work', :controller => 'statement_of_works', :action => 'add', :client => @client.id %></td>
+    </tr>
+  </table>
+</div>

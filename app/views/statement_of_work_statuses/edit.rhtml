@@ -1,0 +1,9 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%=html_title(l('New Status'))%></h2>
+
+<% labelled_tabular_form_for :status, @status, :url => { :action => "update", :id => @status.id } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_save) %> | <%= link_to 'Cancel', :back %>
+<% end %>

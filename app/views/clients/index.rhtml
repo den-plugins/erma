@@ -1,0 +1,29 @@
+<%= render :partial => '/admin/menu' %>
+
+<div class="contextual">
+    <%= link_to(l(:label_erma_new_links, :tab => 'client'), {:controller => 'clients', :action => 'add'}, :class => 'icon icon-add') if User.current.admin? %>
+</div>
+
+<div id="client-list">
+  <h2><%= l(:label_erma_tab, :tab => 'Clients') %></h2>
+
+  <div>
+    <table class="list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Active</th>
+          <th>Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for client in @clients %>
+          <%= render :partial => 'details', :locals => { :client => client } %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<% html_title(l(:label_erma_html_title, :tab => 'Clients'))-%>

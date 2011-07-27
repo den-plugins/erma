@@ -1,0 +1,13 @@
+<tr class="practice <%= cycle("odd", "even") %>">
+  <td align="center"><%= location.name %></td>
+  <td align="center">
+  </td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'locations', :action => 'edit', :id => location.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'locations', :action => 'destroy', :id => location.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

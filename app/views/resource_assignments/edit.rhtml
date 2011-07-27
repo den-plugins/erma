@@ -1,0 +1,9 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_update_resource_assignment)) %></h2>
+
+<% labelled_tabular_form_for :resource_assignment, @resource_assignment, :url => { :action => "update", :id => @resource_assignment.id, :dummy => @resource_assignment.resource.user.login.eql?('dummyuser') ? true:false } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f, :resources => @resources } %>
+
+<%= submit_tag l(:button_save) %> | <%= link_to 'Cancel', :back %>
+<% end %>

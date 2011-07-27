@@ -1,0 +1,19 @@
+<tr class="<%= cycle("odd", "even") %>">
+  <td><%= resource_assignment.resource.user.name %></td>
+  <td><%= resource_assignment.statement_of_work.project.name %></td>
+  <td><%= resource_assignment.role %></td>
+  <td><%= resource_assignment.start_date %></td>
+  <td><%= resource_assignment.end_date %></td>
+  <td><%= resource_assignment.percentage_allocation %></td>
+  <td><%= resource_assignment.billing_rate %></td>
+  <td align="center"><%= image_tag('true.png') if resource_assignment.on_demand? %></td>
+  <td align="center"><%= image_tag('true.png') if resource_assignment.locked? %></td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'resource_assignments', :action => 'edit', :id => resource_assignment.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'resource_assignments', :action => 'destroy', :id => resource_assignment.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

@@ -1,0 +1,9 @@
+<h2><%=l('New Resource')%></h2>
+
+<% labelled_tabular_form_for :resource, @resource, :url => { :action => "add" } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_save) %> | <%= link_to 'Cancel', :back %>
+<% end %>
+
+<% html_title(l('New Resource')) -%>

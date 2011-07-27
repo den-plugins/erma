@@ -1,0 +1,9 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%=html_title(l(:label_erma_add_sow))%></h2>
+
+<% labelled_tabular_form_for :sow, @sow, :url => { :action => "add" } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f, :projects => @projects } %>
+
+<%= submit_tag l(:button_add) %> | <%= link_to 'Cancel', :back %>
+<% end %>

@@ -1,0 +1,11 @@
+<tr class="<%= cycle("odd", "even") %>">
+  <td><%= status.name %></td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'statement_of_work_statuses', :action => 'edit', :id => status.id,
+                                       :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'statement_of_work_statuses', :action => 'destroy', :id => status.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

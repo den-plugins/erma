@@ -1,0 +1,16 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_benched_resources)) %></h2>
+
+<table class="list">
+  <thead>
+    <th>Name</th>
+    <th>Practice(s)</th>
+    <th>Skill(s)</th>
+  </thead>
+  <tbody>
+    <% for resource in @resources %>
+      <%= render :partial => 'resource_details', :locals => { :resource => resource } %>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,9 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%=html_title(l('Add Resource to ' + @resource_practice.practice.to_s))%></h2>
+
+<% labelled_tabular_form_for :resource_practice, @resource_practice, :url => { :action => "add" } do |f| %>
+<%= render :partial => 'form', :locals => { :f => f } %>
+
+<%= submit_tag l(:button_add) %> | <%= link_to 'Cancel', :controller => 'practices', :action => 'show', :id => @resource_practice.practice.id %>
+<% end %>

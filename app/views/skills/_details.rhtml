@@ -1,0 +1,20 @@
+<tr id="skill_<%= skill.id %>" class="skill <%= cycle("odd", "even") %>">
+  <td align="center"><%= link_to skill.name, :controller => 'skills', :action => 'show', :id => skill %></td>
+  <td align="center">
+    <%= skill.resource_skills.length %>
+  </td>
+  <td>
+    <% remote_form_for(:resource, :url => {:controller => 'skills', :action => 'add_resource', :id => skill}, :method => :post) do |f| %>
+    <%= f.select :id, sort_resources(Resource.with_no_skill(skill)).collect{|resource| [resource.user, resource.id]}, {:include_blank => true}, :class => "small" %>
+    <%= submit_tag l(:button_add), :class => "small" %>
+    <% end %>
+  </td>
+  <td align="center">
+    <%= link_to image_tag('edit.png'), {:controller => 'skills', :action => 'edit', :id => skill.id,
+                                        :title => l(:button_edit)} %>
+    <%= link_to image_tag('delete.png'), {:controller => 'skills', :action => 'destroy', :id => skill.id},
+                                         :confirm => l(:text_are_you_sure),
+                                         :method => :post,
+                                         :title => l(:button_delete) %>
+  </td>
+</tr>

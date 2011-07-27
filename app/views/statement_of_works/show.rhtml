@@ -1,0 +1,75 @@
+<%= render :partial => '/admin/menu' %>
+
+<h2><%= html_title(l(:label_erma_sow)) %></h2>
+
+<div>
+  <table>
+    <tr>
+      <td>Client: </td>
+      <td><%= @sow.client.name %></td>
+    </tr>
+    <tr>
+      <td>Project: </td>
+      <td><%= @sow.project.name %></td>
+    </tr>
+    <tr>
+      <td>Description: </td>
+      <td><%= @sow.project.description %></td>
+    </tr>
+    <tr>
+      <td>Status: </td>
+      <% if @sow.statement_of_work_status %>
+        <td><%= @sow.statement_of_work_status.name %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <td>Start Date: </td>
+      <td><%= @sow.start_date %></td>
+    </tr>
+    <tr>
+      <td>End Date: </td>
+      <td><%= @sow.end_date %></td>
+    </tr>
+    <tr>
+      <td>Hourly Billing? </td>
+      <td><%= @sow.hourly_billing %></td>
+    </tr>
+    <tr>
+      <td>Project Team: </td>
+      <td>&nbsp;</td>
+    </tr>
+    <% if @sow.resource_assignments.empty? %>
+      <tr>
+        <td>&nbsp;</td>
+        <td><em>No Resources Assigned</em></td>
+      </tr>
+    <% else %>
+      <% for ra in @sow.resource_assignments %>
+        <tr>
+          <td><%= ra.role %>: </td>
+          <td>
+            <%= ra.resource.user.name %>
+            <%= link_to image_tag('edit.png'), {:controller => 'resource_assignments', :action => 'edit', :id => ra.id, 
+                                                :title => l(:button_edit)} %>
+            <%= link_to image_tag('delete.png'), {:controller => 'resource_assignments', :action => 'destroy', :id => ra.id, :dummy => ra.resource.user.login.eql?('dummyuser') ? true:false},
+                                                  :confirm => l(:text_are_you_sure),
+                                                  :method => :post,
+                                                  :title => l(:button_delete) %>
+          </td>
+        </tr>
+      <% end %>
+    <% end %>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= link_to 'Assign Resources', :controller => 'resource_assignments', :action => 'add', :sow => @sow.id %></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= link_to 'Assign Dummy Resource', :controller => 'resource_assignments', :action => 'add', :sow => @sow.id, :dummy => true %></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><%= link_to 'Back', :controller => 'clients', :action => 'show', :id => @sow.client.id %> | <%= link_to 'Edit', :controller => 'statement_of_works', :action => 'edit', :id => @sow.id %> | <%= link_to 'Delete', {:controller => 'statement_of_works', :action => 'destroy', :id => @sow.id}, :confirm => l(:text_are_you_sure) %></td>
+    </tr>
+  </table>
+</div>

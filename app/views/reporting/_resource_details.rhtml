@@ -1,0 +1,5 @@
+<tr class="<%= cycle("odd", "even") %>">
+  <td align="center"><%= resource.user.name %></td>
+  <td align="center"><%= resource.resource_practices.each{|rp| rp.practice.name}.join(', ') %></td>
+  <td align="center"><%= resource.skills.each{|skill| skill.name}.join(', ') %></td>
+</tr>
